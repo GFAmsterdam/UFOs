@@ -17,3 +17,25 @@ data.forEach((dataRow) => {
      );
   });
 }
+
+//Set up new function called "handleClick" which will handle 
+//what to do after an input is given, 
+//such as filtering the table by date
+function handleClick(){
+    let date = d3.select("#datetime").property("value");
+    let filteredData = tableData;
+
+
+if (date) {
+    filteredData = filteredData.filter(row => row.datetime === date);
+  };
+
+  buildTable(filteredData);
+}
+
+// Attach an event to listen for the form button
+d3.selectAll("#filter-btn").on("click", handleClick);
+
+// Build the table when the page loads
+buildTable(tableData);
+
